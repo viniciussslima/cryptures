@@ -1,0 +1,74 @@
+.home {
+  width: 100%;
+  height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.egg img {
+  cursor: pointer;
+}
+
+.egg img:hover {
+  cursor: pointer;
+  animation: shake 2s infinite;
+}
+
+.egg-title {
+  font-size: 30px;
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.grass {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #026200;
+}
+
+.water {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #006b83;
+}
+
+.fire {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #875100;
+}
+
+.random {
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #510083;
+}
+
+.egg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes shake {
+  from,
+  to {
+    -webkit-transform: translate3d(0, 0, 0) rotateZ(5deg);
+    transform: translate3d(0, 0, 0) rotateZ(5deg);
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    -webkit-transform: translate3d(-10px, 0, 0) rotateZ(-5deg);
+    transform: translate3d(-10px, 0, 0) rotateZ(-5deg);
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    -webkit-transform: translate3d(10px, 0, 0) rotateZ(5deg);
+    transform: translate3d(10px, 0, 0) rotateZ(5deg);
+  }
+}
