@@ -5,6 +5,7 @@ import "./Template.css";
 import useEagerConnect from "../../web3/useEagerConnect";
 import useInactiveListener from "../../web3/useInactiveListener";
 import injected from "../../web3/injected";
+import Menu from "../Menu";
 
 const Template = ({ children }) => {
   const { account, activate } = useWeb3React();
@@ -14,6 +15,7 @@ const Template = ({ children }) => {
 
   return (
     <div className="container">
+      <Menu address={account}></Menu>
       {account ? (
         <div>{children}</div>
       ) : (
