@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import "./Menu.css";
 import moedas from "../../assets/moedas.png";
@@ -15,8 +16,12 @@ const Menu = ({ address }) => {
   }, [address]);
   return (
     <div id="menu">
-      <span className="menuItem">Página inicial</span>
-      <span className="menuItem">Mercado</span>
+      <Link className="menuItem" to="/monsters">
+        Página inicial
+      </Link>
+      <Link className="menuItem" to="/">
+        Mercado
+      </Link>
       <span className="menuItem">Batalha</span>
       <span className="menuItem money">
         <img className="coins" src={moedas} alt="coins"></img>

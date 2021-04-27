@@ -3,3 +3,61 @@
   width: 100vw;
   height: 100vh;
 }
+
+.content {
+  width: 100%;
+  height: calc(100vh - 68px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-conected {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+h2 {
+  margin: 5px;
+}
+
+button {
+  border: none;
+  border-radius: 10px;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+  margin: 10px;
+}
+
+button::before {
+  content: "";
+  background: radial-gradient(
+    47.56% 47.56% at 50% 52.44%,
+    rgba(194, 194, 194, 0) 0%,
+    rgba(0, 0, 0, 0.21) 100%
+  );
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+button:hover::before {
+  z-index: 2;
+  border: none;
+  border-radius: 10px;
+}
+
+.conection {
+  background: linear-gradient(180deg, #54af79 0%, #68cbba 100%);
+  color: #f3f3f3;
+  width: 100px;
+  height: 50px;
+  font-size: large;
+  font-weight: 600;
+}

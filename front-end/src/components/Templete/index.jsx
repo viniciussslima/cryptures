@@ -16,21 +16,25 @@ const Template = ({ children }) => {
   return (
     <div className="container">
       <Menu address={account}></Menu>
-      {account ? (
-        <div>{children}</div>
-      ) : (
-        <div>
-          <button
-            style={{ width: 100, height: 50, color: "black", margin: 10 }}
-            onClick={() => {
-              setActivatingConnector("Injected");
-              activate(injected);
-            }}
-          >
-            Conectar
-          </button>
-        </div>
-      )}
+      <div className="content">
+        {account ? (
+          <>{children}</>
+        ) : (
+          <div className="not-conected">
+            <h2>Nenhuam conta indentificada!</h2>
+            <h2>Para se conctar aperte o botão abaixo:</h2>
+            <button
+              className="conection"
+              onClick={async () => {
+                setActivatingConnector("Injected");
+                activate(injected);
+              }}
+            >
+              Conectar
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };

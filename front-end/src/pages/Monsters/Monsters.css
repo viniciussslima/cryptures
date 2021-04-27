@@ -1,0 +1,27 @@
+.monster img {
+  cursor: pointer;
+  filter: drop-shadow(10px 10px 4px rgba(0, 0, 0, 0.25));
+}
+
+.monster img:hover {
+  cursor: pointer;
+}
+
+.monster-title {
+  font-size: 30px;
+  font-weight: 800;
+  margin: 10px;
+}
+
+.monster-type {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 10px;
+}
+
+.monster {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
