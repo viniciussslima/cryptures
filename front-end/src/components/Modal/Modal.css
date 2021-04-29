@@ -1,0 +1,37 @@
+.modal-container {
+  background-color: rgba(0, 0, 0, 0.4);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 100;
+}
+
+.modal-content {
+  background-color: #f3f3f3;
+  width: 50%;
+  height: 30%;
+  position: relative;
+}
+
+.modal-close-button {
+  color: #111111;
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: larger;
+  font-weight: 800;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.modal-content h1,
+.modal-content p,
+.modal-content button {
+  color: #111111;
+  margin: 10px;
+}
