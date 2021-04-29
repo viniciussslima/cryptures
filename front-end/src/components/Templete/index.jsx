@@ -15,13 +15,13 @@ const Template = ({ children }) => {
 
   return (
     <div className="container">
-      <Menu address={account}></Menu>
+      <Menu />
       <div className="content">
         {account ? (
           <>{children}</>
         ) : (
           <div className="not-conected">
-            <h2>Nenhuam conta indentificada!</h2>
+            <h2>Nenhuma conta indentificada!</h2>
             <h2>Para se conctar aperte o botão abaixo:</h2>
             <button
               className="conection"

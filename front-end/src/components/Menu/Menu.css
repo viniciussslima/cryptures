@@ -1,8 +1,12 @@
 #menu {
+  width: calc(100% - 40px);
+  height: 80px;
   font-size: 24px;
   font-weight: 600 !important;
-  position: relative;
   padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .menuItem {
@@ -13,8 +17,6 @@
 
 .money,
 .address {
-  position: absolute;
-  top: 20px;
   cursor: default;
 }
 
@@ -23,7 +25,6 @@
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  left: 50%;
 }
 
 .money .coins {
@@ -32,6 +33,14 @@
   margin: 0px 10px;
 }
 
-.address {
-  right: 20px;
+.menu-side {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
+
+/* @media (max-width: 1300px) {
+  #menu {
+    font-size: 20px;
+  }
+} */

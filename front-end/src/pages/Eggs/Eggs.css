@@ -44,3 +44,23 @@
     transform: translate3d(10px, 0, 0) rotateZ(5deg);
   }
 }
+
+.modal-buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: 10px;
+}
+
+.modal-buttons button {
+  width: 100px;
+  height: 50px;
+}
+
+.modal-buttons .yes {
+  background-color: #54af79;
+}
+
+.modal-buttons .no {
+  background-color: #d63a15;
+}

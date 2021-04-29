@@ -1,35 +1,35 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 import "./Menu.css";
 import moedas from "../../assets/moedas.png";
+import { useWeb3React } from "@web3-react/core";
+import { useCryptures } from "../../context/cryptures";
 
-const Menu = ({ address }) => {
-  const [formatedAddress, setFormatedAddress] = useState();
-  useEffect(() => {
-    if (address) {
-      const length = address.length;
-      const newAddress =
-        address.substring(0, 5) + "..." + address.substring(length - 3, length);
-      setFormatedAddress(newAddress);
-    }
-  }, [address]);
+const Menu = () => {
+  const { account } = useWeb3React();
+  const { cherishQty } = useCryptures();
+
   return (
     <div id="menu">
-      <Link className="menuItem" to="/monsters">
-        Página inicial
-      </Link>
-      <Link className="menuItem" to="/">
-        Mercado
-      </Link>
-      <span className="menuItem">Batalha</span>
-      <span className="menuItem money">
-        <img className="coins" src={moedas} alt="coins"></img>
-        10 Cherish
-      </span>
-      {address ? (
-        <span className="menuItem address">{formatedAddress}</span>
-      ) : null}
+      <div className="menu-side">
+        <Link className="menuItem" to="/cryptures">
+          Página inicial
+        </Link>
+        <Link className="menuItem" to="/">
+          Mercado
+        </Link>
+        <Link className="menuItem" to="/requestBattle">
+          Batalha
+        </Link>
+      </div>
+      <div className="menu-side">
+        <span className="menuItem money">
+          <img className="coins" src={moedas} alt="coins"></img>
+          {cherishQty} Cherish
+        </span>
+        {account ? <span className="menuItem address">{account}</span> : null}
+      </div>
     </div>
   );
 };

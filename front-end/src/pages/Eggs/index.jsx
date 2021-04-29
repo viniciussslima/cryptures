@@ -1,29 +1,49 @@
-import React from "react";
-import { useWeb3React } from "@web3-react/core";
+import React, { useState } from "react";
 import { ethers } from "ethers";
 
 import "./Eggs.css";
 import MonsterCard from "../../components/MonsterCard";
+import Modal from "../../components/Modal";
 import grassEgg from "../../assets/ovo_de_grama.png";
 import fireEgg from "../../assets/ovo_de_fogo.png";
 import waterEgg from "../../assets/ovo_de_agua.png";
 import randomEgg from "../../assets/ovo_de_aleatorio.png";
-import contractJson from "../../contract.json";
+import { useCryptures } from "../../context/cryptures";
 
 const Eggs = () => {
-  const { library } = useWeb3React();
+  const { managerContract, cherishQty, updateCherich } = useCryptures();
 
-  const buyCrypture = async (crypture) => {
-    const abi = contractJson.abi;
-    let contractAddress = process.env.REACT_APP_CONTRACT;
-    let contract = new ethers.Contract(contractAddress, abi, library);
+  const [openModal, setOpenModal] = useState(false);
+  const [openError, setOpenError] = useState(false);
+  const [error, setError] = useState();
+  const [chosenEgg, setChosenEgg] = useState();
 
-    const signer = new ethers.providers.Web3Provider(
-      library.provider
-    ).getSigner();
-    let contractWithSigner = contract.connect(signer);
+  const buyCrypture = async () => {
+    setOpenModal(false);
     try {
-      await contractWithSigner.buyCrypture(crypture);
+      console.log(chosenEgg);
+      let value = ethers.utils.parseEther("0.1");
+      await managerContract.buyCrypture(chosenEgg, { value });
+    } catch (err) {
+      setOpenError(true);
+      setError(err.message);
+    }
+  };
+
+  const checkCherish = (crypture) => {
+    setChosenEgg(crypture);
+    if (cherishQty >= 30000) {
+      setOpenModal(true);
+    } else {
+      buyCrypture();
+    }
+  };
+
+  const buyCryptureWithCherish = async () => {
+    setOpenModal(false);
+    try {
+      await managerContract.buyCryptureWithToken(chosenEgg);
+      await updateCherich();
     } catch (err) {
       console.log(err);
     }
@@ -41,21 +61,7 @@ const Eggs = () => {
           <img
             src={grassEgg}
             alt="green egg"
-            onClick={() => buyCrypture(0)}
-          ></img>
-        </div>
-      </MonsterCard>
-      <MonsterCard
-        style={{
-          background: "linear-gradient(180deg, #3980B8 0%, #3FACC9 100%)",
-        }}
-      >
-        <div className="egg">
-          <p className="egg-title">Água</p>
-          <img
-            src={waterEgg}
-            alt="blue egg"
-            onClick={() => buyCrypture(1)}
+            onClick={() => checkCherish(0)}
           ></img>
         </div>
       </MonsterCard>
@@ -69,7 +75,21 @@ const Eggs = () => {
           <img
             src={fireEgg}
             alt="orange egg"
-            onClick={() => buyCrypture(3)}
+            onClick={() => checkCherish(1)}
+          ></img>
+        </div>
+      </MonsterCard>
+      <MonsterCard
+        style={{
+          background: "linear-gradient(180deg, #3980B8 0%, #3FACC9 100%)",
+        }}
+      >
+        <div className="egg">
+          <p className="egg-title">Água</p>
+          <img
+            src={waterEgg}
+            alt="blue egg"
+            onClick={() => checkCherish(2)}
           ></img>
         </div>
       </MonsterCard>
@@ -80,9 +100,38 @@ const Eggs = () => {
       >
         <div className="egg">
           <p className="egg-title">?</p>
-          <img src={randomEgg} alt="purple egg"></img>
+          <img
+            src={randomEgg}
+            alt="purple egg"
+            onClick={() => checkCherish(3)}
+          ></img>
         </div>
       </MonsterCard>
+      {openModal ? (
+        <Modal title="Usar cherish?" onClose={() => setOpenModal(false)}>
+          <div>
+            <p>
+              Você possui cherish suficiente para comprar uma crypture, deseja
+              usar?
+            </p>
+          </div>
+          <div className="modal-buttons">
+            <button className="no" onClick={buyCrypture}>
+              Não
+            </button>
+            <button className="yes" onClick={buyCryptureWithCherish}>
+              Sim
+            </button>
+          </div>
+        </Modal>
+      ) : null}
+      {openError ? (
+        <Modal title="Erro" onClose={() => setOpenError(false)}>
+          <div>
+            <p>{error}</p>
+          </div>
+        </Modal>
+      ) : null}
     </>
   );
 };
