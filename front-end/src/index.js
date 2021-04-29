@@ -4,6 +4,7 @@ import { Web3ReactProvider } from "@web3-react/core";
 import { Web3Provider } from "@ethersproject/providers";
 
 import "./index.css";
+import { CrypturesProvider } from "./context/cryptures";
 import Router from "./Router";
 
 function getLibrary(provider) {
@@ -15,7 +16,9 @@ function getLibrary(provider) {
 ReactDOM.render(
   <React.StrictMode>
     <Web3ReactProvider getLibrary={getLibrary}>
-      <Router />
+      <CrypturesProvider>
+        <Router />
+      </CrypturesProvider>
     </Web3ReactProvider>
   </React.StrictMode>,
   document.getElementById("root")
