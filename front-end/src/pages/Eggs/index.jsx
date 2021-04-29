@@ -27,6 +27,7 @@ const Eggs = () => {
   };
 
   const buyCrypture = async (crypture) => {
+    setModal({ open: false, egg: modal.egg });
     try {
       let value = ethers.utils.parseEther("0.1");
       await managerContract.buyCrypture(crypture, { value });

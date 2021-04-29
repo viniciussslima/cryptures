@@ -5,9 +5,14 @@ import "./CryptureInfo.css";
 import Card from "../../components/Card";
 import Bar from "../../components/Bar";
 import requestApi from "../../requestApi";
+import { useCryptures } from "../../context/cryptures";
+import banheira from "../../assets/banheira.png";
+import comidaReal from "../../assets/comida-real.png";
 
 const CryptureInfo = () => {
   const { id } = useParams();
+
+  const { managerContract } = useCryptures();
 
   const [info, setInfo] = useState("status");
   const [crypture, setCrypture] = useState();
@@ -20,6 +25,21 @@ const CryptureInfo = () => {
     };
     getCrypture();
   }, [id]);
+
+  const onWash = async () => {
+    try {
+      await managerContract.washCrypture(crypture.id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const onFeed = async () => {
+    try {
+      await managerContract.feedCrypture(crypture.id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   return (
     <>
@@ -67,6 +87,12 @@ const CryptureInfo = () => {
                 onClick={() => setInfo("golpes")}
               >
                 Golpes
+              </h2>
+              <h2
+                style={info !== "cuidar" ? { color: "grey" } : null}
+                onClick={() => setInfo("cuidar")}
+              >
+                Cuidar
               </h2>
             </div>
             {info === "status" ? (
@@ -120,7 +146,7 @@ const CryptureInfo = () => {
                   percentage={crypture.washedPercentage * 100}
                 />
               </div>
-            ) : (
+            ) : info === "golpes" ? (
               <div className="info-content-attacks">
                 {crypture.attacks.map((attack, index) => {
                   if (attack.name !== "Nada") {
@@ -152,6 +178,27 @@ const CryptureInfo = () => {
                   }
                   return null;
                 })}
+              </div>
+            ) : (
+              <div className="info-content-care">
+                <div className="care-side">
+                  <h2>Lavar</h2>
+                  <img
+                    src={banheira}
+                    className="care-button"
+                    onClick={onWash}
+                    alt="wash"
+                  />
+                </div>
+                <div className="care-side">
+                  <h2>Alimentar</h2>
+                  <img
+                    src={comidaReal}
+                    className="care-button"
+                    onClick={onFeed}
+                    alt="wash"
+                  />
+                </div>
               </div>
             )}
           </Card>

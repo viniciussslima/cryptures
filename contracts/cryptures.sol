@@ -60,9 +60,9 @@ contract Cryptures is Context, ERC721, ERC721Enumerable {
                 : uint256(cryptureType);
 
         uint8[4] memory attacks = [1, 2, 0, 0];
-        if (cryptureId == uint256(CrypturesType.Fire)) {
+        if (cryptureId == 1) {
             attacks = [1, 3, 0, 0];
-        } else if (cryptureId == uint256(CrypturesType.Water)) {
+        } else if (cryptureId == 2) {
             attacks = [1, 4, 0, 0];
         }
 
