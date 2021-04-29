@@ -1,0 +1,127 @@
+#battle-cryptures {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+
+.search {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin: 10px;
+}
+
+.search-input {
+  color: #111111;
+  width: 100%;
+  height: 60px;
+  background: #f3f3f3;
+  outline: none;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.search img {
+  position: absolute;
+  right: 0;
+  margin: 10px;
+}
+
+.battle-cryptures-content {
+  display: flex;
+}
+
+.battle-cryptures-options-card {
+  background: linear-gradient(180deg, #54af79 0%, #68cbba 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+}
+
+.battle-cryptures-options-card img {
+  width: 100px;
+  height: 100px;
+}
+
+.battle-display {
+  background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(255, 255, 255, 0.48) 0%,
+      rgba(255, 255, 255, 0) 100%
+    ),
+    linear-gradient(
+      106.66deg,
+      #00c667 0%,
+      #00964e 49.45%,
+      #005382 49.46%,
+      #007abf 100%
+    );
+  width: 1100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: auto;
+  margin: 20px;
+}
+
+.battle-display-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.battle-display-side .title,
+.battle-display-side .level {
+  font-weight: 500;
+  font-size: 60px;
+  text-shadow: -4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.battle-display-side .title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px;
+}
+
+.left-crypture {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+.battle-display-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 2;
+  grid-column-end: 2;
+}
+
+.battle-display-center img {
+  margin-bottom: 20px;
+}
+
+.battle-display-center button {
+  background-color: #d63a15;
+  width: 130px;
+  height: 40px;
+}
+
+.helper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.helper h2 {
+  color: #111111;
+  text-align: center;
+}
