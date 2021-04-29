@@ -6,7 +6,7 @@ const cryptures = require("../contracts/cryptures.json");
 const RequestBattle = require("../models/BattleRequest");
 
 const provider = new ethers.providers.JsonRpcProvider();
-const signer = provider.getSigner(process.env.API_ETHERIUM_ADDRESS);
+const signer = provider.getSigner(process.env.API_ETHEREUM_ADDRESS);
 
 const managerAbi = manager.abi;
 const managerContract = new ethers.Contract(
