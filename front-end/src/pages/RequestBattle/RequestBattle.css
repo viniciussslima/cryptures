@@ -32,6 +32,8 @@
 
 .battle-cryptures-content {
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .battle-cryptures-options-card {
@@ -41,6 +43,8 @@
   align-items: center;
   justify-content: center;
   margin: 10px;
+  width: 120px;
+  height: 140px;
 }
 
 .battle-cryptures-options-card img {
@@ -49,23 +53,11 @@
 }
 
 .battle-display {
-  background: radial-gradient(
-      50% 50% at 50% 50%,
-      rgba(255, 255, 255, 0.48) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    linear-gradient(
-      106.66deg,
-      #00c667 0%,
-      #00964e 49.45%,
-      #005382 49.46%,
-      #007abf 100%
-    );
-  width: 1100px;
+  width: 990px;
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: auto;
+  grid-template-columns: 1fr 0fr 1fr;
   margin: 20px;
+  height: 500px;
 }
 
 .battle-display-side {
@@ -101,18 +93,20 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  grid-column-start: 2;
-  grid-column-end: 2;
 }
 
 .battle-display-center img {
   margin-bottom: 20px;
+  width: 150px;
 }
 
 .battle-display-center button {
   background-color: #d63a15;
-  width: 130px;
-  height: 40px;
+  width: 182px;
+  height: 57px;
+  font-size: 22px;
+  font-weight: 600;
+  box-shadow: 0px 0px 72px rgb(0 0 0 / 70%);
 }
 
 .helper {

@@ -13,36 +13,33 @@ import { useCryptures } from "../../context/cryptures";
 const Eggs = () => {
   const { managerContract, cherishQty, updateCherich } = useCryptures();
 
-  const [openModal, setOpenModal] = useState(false);
+  const [modal, setModal] = useState({ open: false, egg: null });
   const [openError, setOpenError] = useState(false);
   const [error, setError] = useState();
-  const [chosenEgg, setChosenEgg] = useState();
+  console.log(modal.egg);
 
-  const buyCrypture = async () => {
-    setOpenModal(false);
+  const checkCherish = async (crypture) => {
+    if (cherishQty >= 30000) {
+      setModal({ open: true, egg: crypture });
+    } else {
+      buyCrypture(crypture);
+    }
+  };
+
+  const buyCrypture = async (crypture) => {
     try {
-      console.log(chosenEgg);
       let value = ethers.utils.parseEther("0.1");
-      await managerContract.buyCrypture(chosenEgg, { value });
+      await managerContract.buyCrypture(crypture, { value });
     } catch (err) {
       setOpenError(true);
       setError(err.message);
     }
   };
 
-  const checkCherish = (crypture) => {
-    setChosenEgg(crypture);
-    if (cherishQty >= 30000) {
-      setOpenModal(true);
-    } else {
-      buyCrypture();
-    }
-  };
-
   const buyCryptureWithCherish = async () => {
-    setOpenModal(false);
+    setModal({ open: false, egg: modal.egg });
     try {
-      await managerContract.buyCryptureWithToken(chosenEgg);
+      await managerContract.buyCryptureWithToken(modal.egg);
       await updateCherich();
     } catch (err) {
       console.log(err);
@@ -107,8 +104,11 @@ const Eggs = () => {
           ></img>
         </div>
       </MonsterCard>
-      {openModal ? (
-        <Modal title="Usar cherish?" onClose={() => setOpenModal(false)}>
+      {modal.open ? (
+        <Modal
+          title="Usar cherish?"
+          onClose={() => setModal({ open: false, egg: modal.egg })}
+        >
           <div>
             <p>
               Você possui cherish suficiente para comprar uma crypture, deseja
@@ -116,7 +116,7 @@ const Eggs = () => {
             </p>
           </div>
           <div className="modal-buttons">
-            <button className="no" onClick={buyCrypture}>
+            <button className="no" onClick={() => buyCrypture(modal.egg)}>
               Não
             </button>
             <button className="yes" onClick={buyCryptureWithCherish}>

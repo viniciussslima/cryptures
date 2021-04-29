@@ -16,7 +16,7 @@ const Menu = () => {
         <Link className="menuItem" to="/cryptures">
           Página inicial
         </Link>
-        <Link className="menuItem" to="/">
+        <Link className="menuItem" to="/markt">
           Mercado
         </Link>
         <Link className="menuItem" to="/requestBattle">

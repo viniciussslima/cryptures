@@ -12,8 +12,8 @@ const Router = () => {
     <BrowserRouter>
       <Template>
         <Switch>
-          <Route exact path="/" component={Eggs} />
           <Route exact path="/cryptures" component={Monsters} />
+          <Route exact path="/markt" component={Eggs} />
           <Route exact path="/crypture/:id" component={CryptureInfo} />
           <Route exact path="/requestBattle" component={RequestBattle} />
         </Switch>
