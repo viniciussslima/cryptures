@@ -27,7 +27,7 @@ app.use(
 app.use(express.json());
 app.use(morgan("dev"));
 app.use(router);
-app.use("/cryptures/images", express.static("./api/public"));
+app.use("/cryptures/images", express.static("./public"));
 
 app.listen(process.env.API_PORT, () => {
   console.log("Api rodando na porta " + process.env.API_PORT);
